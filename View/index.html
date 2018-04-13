@@ -12,7 +12,7 @@
 
   </head>
   <body>
-    <div class="container">
+    <div class="container-fluid">
       <div class="header" id="menu">
 
         <ul class="nav nav-pills pull-right">
@@ -23,18 +23,17 @@
           <li ><a href="index.html">Home</a></li>
         </ul>
 
-        <h3 class="text-muted">Twitter Dashboard Application</h3>
+        <h3 class="text-muted">Twitter Stream and Search </h3>
       </div>
 
       <div class="row marketing">
         <div class="col-sm-3">
-          <form role="form" id="your-form" method="get">
             <div class="form-group">
               <label>Search</label>
               <input name="search" id="search" value="" type="text" class="form-control" autofocus required value="" placeholder="Search Term">
             </div>
-            <input value="Go" name="send" id="send" type="submit" class="btn btn-default btn-primary"  />
-          </form>
+            <a href="#" id="goAction" class="btn btn-default btn-primary">Go</a>
+            
           <br>
 
           <form role="form" id="results-page" method="get">
@@ -50,17 +49,13 @@
             </div>
           </form>
           <br>
-          <form role="form" id="stream-start-form" method="get">
             <div class="form-group">
               <label>Stream</label>
               <input name="stream" id="stream" value="" type="text" class="form-control" autofocus required value="" placeholder="Stream Term">
             </div>
-            <input value="Start" name="start-stream" id="start-stream" type="submit" class="btn btn-default btn-primary"  />
-          </form>
-          <br>
-          <form role="form" id="stream-stop-form" method="get">
-            <input value="Stop" name="stop-stream" id="stop-stream" type="submit" class="btn btn-default btn-primary"  />
-          </form>
+            <a href="#" id="startStream" class="btn btn-default btn-primary">Start</a>
+            &nbsp;&nbsp;
+            <a href="#" id="stopStream" class="btn btn-default btn-primary">Stop</a>
           <br>
 
 
@@ -92,8 +87,7 @@ var results_per_page = document.getElementById('results-per-page');
 var results_marker = document.getElementById('results-marker');
 
     $(function() {
-              $('#your-form').on('submit',function(e){
-                e.preventDefault();
+          $('#goAction').on('click',function(){
                 $('#spinner').show();
 
                 $.ajax({
@@ -126,11 +120,7 @@ var results_marker = document.getElementById('results-marker');
                    $('#spinner').hide();
                 });
             });
-    });
-
-    $(function() {
-            $('#stream-start-form').on('submit',function(e){
-            e.preventDefault();
+            $('#startStream').on('click',function(){
             $('#spinner').show();
 
             $.ajax({
@@ -140,11 +130,8 @@ var results_marker = document.getElementById('results-marker');
               dataType: "json"
             })
           });
-    });
-
-    $(function() {
-            $('#stream-stop-form').on('submit',function(e){
-            e.preventDefault();
+          
+            $('#stopStream').on('click',function(e){
             $('#spinner').show();
 
             $.ajax({
